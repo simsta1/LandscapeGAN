@@ -8,18 +8,20 @@ from multiprocessing import Pool
 
 
 def __download_image(image):
-    name, url = image
-    output_path = os.path.join(DOWNLOAD_FOLDER, name + '.jpg')
-    if not os.path.exists(output_path):
-        wget.download(url=url, out=output_path)
-        print(f'\n{url} --> {output_path}')
+    try:
+        name, url = image
+        output_path = os.path.join(DOWNLOAD_FOLDER, name + '.jpg')
+        if not os.path.exists(output_path):
+            wget.download(url=url, out=output_path)
+            print(f'\n{url} --> {output_path}')
+    except:
+        print('Not working for', name, url)
 
 def download_images_MP(images: dict, n_processes: int):
     """"""
-    pool = Pool(processes=n_processes)
-    pool.map(__download_image, list(images.items()))
-    pool.close()
-
+    with Pool(processes=n_processes) as pool:
+        pool.map(__download_image, list(images.items()))
+    
 
 class UnsplashDownload(object):
     
@@ -81,10 +83,11 @@ class ScrapeUnsplashPhotos(UnsplashDownload):
                 pages = self._extract_content(response_json=response.json(), return_pages=True)
             else:
                 pages = self.page_limit
-                
+            
             with tqdm(total=pages) as pbar:
                 pbar.update(1)   
-                for page in range(1, pages):
+                page = 1
+                while page < pages:
                     pbar.set_description(f'Keyword: {kword} / Pagining over page {page}/{pages}')
                     response = session.get(self.base_url + 'search/photos', 
                                            params=dict(query=kword, page=page, 
@@ -94,6 +97,7 @@ class ScrapeUnsplashPhotos(UnsplashDownload):
                     else:
                         self._extract_content(response_json=response.json(), return_pages=False)
                         pbar.update(1)
+                        page += 1
                         
     def _extract_content(self, response_json, return_pages=True):
         """"""
@@ -118,8 +122,9 @@ class ScrapeUnsplashPhotos(UnsplashDownload):
                 
         # Delete all corrupted files   
         self.clean_image_folder()    
-        time.sleep(self._retry_after*60)
         print(f'Sleeping for {self._retry_after}min')
+        time.sleep(self._retry_after*60)
+        
         
 if __name__ == '__main__':
     
@@ -133,6 +138,7 @@ if __name__ == '__main__':
     
     scraper = ScrapeUnsplashPhotos(access_key=access_key, 
                                    keywords=KEYWORDS, 
-                                   download_folder=DOWNLOAD_FOLDER, page_limit=PAGE_LIMIT)
+                                   download_folder=DOWNLOAD_FOLDER, 
+                                   page_limit=PAGE_LIMIT)
     # Start scrape process
     scraper.get_photos()
