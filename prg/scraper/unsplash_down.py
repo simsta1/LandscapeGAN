@@ -122,7 +122,7 @@ class ScrapeUnsplashPhotos(UnsplashDownload):
                 
         # Delete all corrupted files   
         self.clean_image_folder()    
-        print(f'Sleeping for {self._retry_after}min')
+        print(f'--- Sleeping for {self._retry_after}min ---')
         time.sleep(self._retry_after*60)
         
         
@@ -130,7 +130,7 @@ if __name__ == '__main__':
     
     DOWNLOAD_FOLDER = '../../unsplash'
     PAGE_LIMIT = None
-    KEYWORDS = ['mountains', 'landscapes', 'outdoor']
+    KEYWORDS = ['seascapes']
     
     with open('../../config.yaml', 'r') as yaml_file:
         configs = yaml.load(yaml_file, yaml.FullLoader)
