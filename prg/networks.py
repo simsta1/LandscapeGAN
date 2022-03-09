@@ -9,9 +9,12 @@ class Generator(nn.Module):
     In the output Layer one can find a tanh-Activation.
     """
     
-    def __init__(self, z_dim):
+    def __init__(self, z_dim: int = 100):
         """
         Implementation of Generator with aspects from the paper which introduced DCGAN (Deep Convolutional GAN's)
+        
+        Normally this class takes a 100 dimensional Z-Vector as input and upsamples it to an image of 1024x1024. If another
+        dimensionality is being chosen then it can not be guranteed to match the with the Discrimnator anymore.
         
         params:
         -----------
