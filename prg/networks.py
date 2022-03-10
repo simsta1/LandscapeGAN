@@ -1,4 +1,7 @@
 import torch.nn as nn
+import torch
+from tqdm import tqdm
+import numpy as np
 
 
 class Generator(nn.Module):   
@@ -117,3 +120,5 @@ class Discriminator(nn.Module):
 
     def forward(self, input):
         return self.main(input)
+    
+    
