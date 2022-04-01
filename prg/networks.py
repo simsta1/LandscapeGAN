@@ -124,6 +124,7 @@ class Discriminator(nn.Module):
         return self.main(input)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -221,6 +222,8 @@ class Discriminator128(nn.Module):
 
     def forward(self, input):
         return self.main(input)
+=======
+>>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
 =======
 >>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
 =======

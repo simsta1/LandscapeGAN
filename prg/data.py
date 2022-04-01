@@ -6,7 +6,10 @@ import PIL
 import os
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import numpy as np
+=======
+>>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
 =======
 >>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
 =======
@@ -20,7 +23,11 @@ class CustomDataset(Dataset):
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     def __init__(self, root_dir: str, transform: 'Compose' = None, dataset_fraction: float = 1):
+=======
+    def __init__(self, root_dir: str, transform: 'Compose' = None):
+>>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
 =======
     def __init__(self, root_dir: str, transform: 'Compose' = None):
 >>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
@@ -39,6 +46,7 @@ class CustomDataset(Dataset):
             
         all_images: list
             List of all images names in the root dir.
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         
@@ -66,6 +74,8 @@ class CustomDataset(Dataset):
 =======
 =======
 >>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
+=======
+>>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
         """
         self.root_dir = root_dir
         self.transform = transform
@@ -74,6 +84,9 @@ class CustomDataset(Dataset):
     def __len__(self):
         return len(os.listdir(self.root_dir))
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
+=======
 >>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
 =======
 >>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
@@ -84,7 +97,11 @@ class CustomDataset(Dataset):
         
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         img_name = os.path.join(self.root_dir, self.images[idx])
+=======
+        img_name = os.path.join(self.root_dir, self.all_images[idx])
+>>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
 =======
         img_name = os.path.join(self.root_dir, self.all_images[idx])
 >>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
@@ -101,7 +118,11 @@ class CustomDataset(Dataset):
 def get_dataloader(root_dir: str, transforms: 'torch.utils.Compose', 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                    batch_size: int, workers: int, dataset_fraction: float = 1):
+=======
+                   batch_size: int, workers: int):
+>>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
 =======
                    batch_size: int, workers: int):
 >>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
@@ -128,7 +149,11 @@ def get_dataloader(root_dir: str, transforms: 'torch.utils.Compose',
     
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     custom_dataset = CustomDataset(root_dir=root_dir, transform=transforms, dataset_fraction=dataset_fraction)
+=======
+    custom_dataset = CustomDataset(root_dir=root_dir, transform=transforms)
+>>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
 =======
     custom_dataset = CustomDataset(root_dir=root_dir, transform=transforms)
 >>>>>>> 47d48b6526b303a6acb21ca69d041332a4bf51f8
