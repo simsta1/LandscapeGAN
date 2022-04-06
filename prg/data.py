@@ -12,7 +12,7 @@ class CustomDataset(Dataset):
     did not return correct amount of batch size.
     """
 
-    def __init__(self, root_dir: str, transform: 'Compose' = None, dataset_fraction: float = 1):
+    def __init__(self, root_dir: str, transform: 'Compose' = None, dataset_fraction: float = 1, random_seed: int = 10):
         """
         
         Params:
@@ -32,9 +32,12 @@ class CustomDataset(Dataset):
         self.root_dir = root_dir
         self.transform = transform
         self.dataset_fraction = dataset_fraction
+        self.seed = random_seed # for reproducibility
         self.images = self._build_image_list()
         
+        
     def _build_image_list(self):
+        np.random.seed(self.seed)
         # Calculate fraction of data to take from dataset
         dataset_size = int(round(len(os.listdir(self.root_dir)) * self.dataset_fraction, 0))
         # Load all images from within root dri
@@ -80,11 +83,13 @@ def get_dataloader(root_dir: str, transforms: 'torch.utils.Compose',
         Amount of CPU workers for the loading of data into gpu.
     """
     
-    custom_dataset = CustomDataset(root_dir=root_dir, transform=transforms, dataset_fraction=dataset_fraction)
+    custom_dataset = CustomDataset(root_dir=root_dir, transform=transforms, 
+                                   dataset_fraction=dataset_fraction)
     
     return DataLoader(dataset=custom_dataset, 
                       batch_size=batch_size, 
-                      num_workers=workers)
+                      num_workers=workers, 
+                      shuffle=True)
     
     
     
