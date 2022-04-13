@@ -125,7 +125,6 @@ class Discriminator(nn.Module):
 
 
 
-  
 # According to Implementation https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
 class DCGANDiscriminator128(nn.Module):
     def __init__(self):
@@ -157,7 +156,6 @@ class DCGANDiscriminator128(nn.Module):
         return self.main(input)
     
 # Generator Code
-
 class DCGANGenerator128(nn.Module):
     def __init__(self):
         super().__init__()
@@ -165,22 +163,27 @@ class DCGANGenerator128(nn.Module):
             # input is Z, going into a convolution
             nn.ConvTranspose2d( 100, 64 * 16, 4, 1, 0, bias=False),
             nn.BatchNorm2d(64 * 16),
+            nn.Dropout2d(p=.5, inplace=True),
             nn.ReLU(True),
             # state size. (ngf*8) x 4 x 4
             nn.ConvTranspose2d(64 * 16, 64 * 8, 4, 2, 1, bias=False),
             nn.BatchNorm2d(64 * 8),
+            nn.Dropout2d(p=.5, inplace=True),
             nn.ReLU(True),
             # state size. (ngf*4) x 8 x 8
             nn.ConvTranspose2d( 64 * 8, 64 * 4, 4, 2, 1, bias=False),
             nn.BatchNorm2d(64 * 4),
+            nn.Dropout2d(p=.5, inplace=True),
             nn.ReLU(True),
             # state size. (ngf*2) x 16 x 16
             nn.ConvTranspose2d( 64 * 4, 64 * 2, 4, 2, 1, bias=False),
             nn.BatchNorm2d(64 * 2),
+            nn.Dropout2d(p=.5, inplace=True),
             nn.ReLU(True),
             # state size. (ngf) x 32 x 32
             nn.ConvTranspose2d( 64 * 2, 64, 4, 2, 1, bias=False),
             nn.BatchNorm2d(64 * 1),
+            nn.Dropout2d(p=.5, inplace=True),
             nn.ReLU(True),
             # state size. (nc) x 64 x 64
             nn.ConvTranspose2d( 64, 3, 4, 2, 1, bias=False),
