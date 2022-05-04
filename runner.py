@@ -2,8 +2,6 @@ import torch
 import torchvision.transforms as transforms
 import PIL
 import os
-import numpy as np
-from tqdm import tqdm
 import argparse
 
 from prg.networks import DCGANDiscriminator128, DCGANGenerator128
@@ -27,7 +25,7 @@ parser.add_argument(
     '--use_dropout',
     help='If true uses dropout else not',
     default=True, 
-    choices=[True, False],
+    choices=['True', 'False'],
 )
 
 
@@ -64,9 +62,9 @@ def generate_images(generator, N, device, use_dropout):
             transforms.ToPILImage()
         ]
     )  
-    for i, image in enumerate(1, image_batch):
+    for i, image in enumerate(image_batch):
         image = inverse_transforms(image)
-        image.save(f'./image_out/{i}.jpg')
+        image.save(f'./image_out/{i+1}.jpg')
 
    
 def main(args):
