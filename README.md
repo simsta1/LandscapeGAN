@@ -5,7 +5,7 @@
 
 
 
-This repository is for the implementation of GAN which is able to sample Landscape Images from a random noise vector.
+This repository is for the implementation of GAN (adapted DCGAN), which is able to sample Landscape Images from a random noise vector.
 
 ## Documentation
 
