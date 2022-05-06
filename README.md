@@ -1,6 +1,10 @@
 
 # LandscapeGAN
 
+<a href="https://img.shields.io/badge/FHNW-Deep%20Learning-yellow"><img src="https://img.shields.io/badge/FHNW-Deep%20Learning-yellow" /></a>
+
+
+
 This repository is for the implementation of GAN which is able to sample Landscape Images from a random noise vector.
 
 ## Documentation
