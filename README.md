@@ -15,7 +15,8 @@ The documentation of the whole procedure from start to end is documented within 
 git clone git@github.com:SimonStaehli/LandsGAN.git
 ```
 
-2. Download models from Google Drive and add it to the folder `./models` here: https://drive.google.com/drive/folders/13-GNHs1Bvjd17odvGciSg5K3eubKNEMd?usp=sharing 
+2. Download Generator model from Google Drive and add it to the folder `./models` here: https://drive.google.com/drive/folders/13-GNHs1Bvjd17odvGciSg5K3eubKNEMd?usp=sharing 
+
 
 3. Install required packages
 ```bash
