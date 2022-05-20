@@ -4,6 +4,10 @@
 
 This repository is for the implementation of GAN (adapted DCGAN), which is able to sample Landscape Images from a random noise vector.
 
+`Z -> DCGAN -> R-ESRGAN -> OUTPUT_IMAGE`
+
+Repo borrows code for upscaling from https://github.com/xinntao/Real-ESRGAN
+
 ## Documentation
 
 The documentation of the whole procedure from start to end is documented within the notebook `LandsGAN.ipynb`
