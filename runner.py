@@ -76,8 +76,6 @@ def save_image_batch(image_batch):
         image.save(save_path)
         image_names.append(save_path)
 
-    return image_names
-
 def upscale_images():
     model = RRDBNet(
         num_in_ch=3, 
@@ -103,6 +101,7 @@ def upscale_images():
     # do upsampling using realsesrgan
     out_folder = 'image_out'
     images_to_upscale = [os.path.join(out_folder, name) for name in os.listdir(out_folder) if '.jpg' in name]
+    images_to_upscale = [name for name in images_to_upscale if 'upscaled' not in name]
     for path in images_to_upscale:
         print(f'--- Upscaling Image: {path}')
         # laod image 
@@ -143,7 +142,7 @@ def main(args):
         use_dropout=args.use_dropout
     )
     print('-- Save Generated Images ...')
-    image_batch_names = save_image_batch(image_batch)
+    save_image_batch(image_batch)
 
     print('-- Upscale Images ...')
     image_batch = upscale_images()
