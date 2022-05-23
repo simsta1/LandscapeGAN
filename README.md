@@ -2,6 +2,12 @@
 
 # LandscapeGAN
 
+
+<img src="doc\LandscapeGAN_gif.gif" width="600" align="center">
+
+---
+
+
 This repository is for the implementation of GAN (adapted DCGAN), which is able to sample Landscape Images from a random noise vector.
 
 `Z -> DCGAN -> R-ESRGAN -> OUTPUT_IMAGE`
@@ -31,15 +37,18 @@ pip install -r requirements2.txt
 
 ## Usage/Examples
 
-Basic Usage:
-Will generate one photo and place it into the folder image_out.
+### Generate images:
+
+Will generate 5 photos with size of 3x128x128 and place it into the folder image_out. Check parameter `--help` for more options and descriptions.
 
 ```bash
-python runner.py 
+python runner.py -n 5
 ```
 
-Additional Usage with params:
+### Upscale images:
+
+This script will upscale images within given input folder by 4 times. Check parameter `--help` for more options and descriptions.
 
 ```bash
-python runner.py --help
+python upscale.py -i image_out -r True
 ```
