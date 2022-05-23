@@ -25,7 +25,8 @@ git clone git@github.com:SimonStaehli/LandsGAN.git
 
 3. Install required packages
 ```bash
-pip install -r requirements.txt
+pip install -r requirements1.txt
+pip install -r requirements2.txt
 ```
 
 ## Usage/Examples
